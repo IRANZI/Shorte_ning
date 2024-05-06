@@ -1,0 +1,45 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+  <style>
+    table,tr,th,td{
+        border:1px solid black;
+        border-collapse: collapse;
+        padding: 30px;
+        
+    }
+    input{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>URL Shortener</h1>
+  <form action="/shortUrls" method="POST">
+    <input type="text" name="fullUrl" placeholder="Enter URL" style="padding:10px">
+    <button type="submit">Shorten</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Original URL</th>
+        <th>Shortened URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% shortUrls.forEach(shortUrl => { %>
+        <tr>
+          <td><%= shortUrl.full %></td>
+          <td><a href="/<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
+        
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>
